@@ -6,6 +6,38 @@
 import * as msRest from "@azure/ms-rest-js";
 
 
+export const KanjiLookupResult: msRest.CompositeMapper = {
+  serializedName: "KanjiLookupResult",
+  type: {
+    name: "Composite",
+    className: "KanjiLookupResult",
+    modelProperties: {
+      kanji: {
+        serializedName: "kanji",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "String"
+            }
+          }
+        }
+      },
+      possibleRadicals: {
+        serializedName: "possibleRadicals",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
 export const WordInfo: msRest.CompositeMapper = {
   serializedName: "WordInfo",
   type: {

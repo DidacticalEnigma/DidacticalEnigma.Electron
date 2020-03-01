@@ -29,6 +29,34 @@
         }
       }
     },
+    "/radicals/select": {
+      "get": {
+        "tags": [
+          "Radicals"
+        ],
+        "operationId": "SelectRadicals",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "radical",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/KanjiLookupResult"
+            }
+          }
+        }
+      }
+    },
     "/wordInfo": {
       "get": {
         "tags": [
@@ -65,6 +93,23 @@
     }
   },
   "definitions": {
+    "KanjiLookupResult": {
+      "type": "object",
+      "properties": {
+        "kanji": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "possibleRadicals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "WordInfo": {
       "type": "object",
       "properties": {

@@ -7,6 +7,14 @@ import { ServiceClientOptions } from "@azure/ms-rest-js";
 import * as msRest from "@azure/ms-rest-js";
 
 /**
+ * An interface representing KanjiLookupResult.
+ */
+export interface KanjiLookupResult {
+  kanji?: string[];
+  possibleRadicals?: string[];
+}
+
+/**
  * An interface representing WordInfo.
  */
 export interface WordInfo {
@@ -20,6 +28,13 @@ export interface WordInfo {
  */
 export interface DidacticalEnigmaRestApiOptions extends ServiceClientOptions {
   baseUri?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface DidacticalEnigmaRestApiSelectRadicalsOptionalParams extends msRest.RequestOptionsBase {
+  radical?: string;
 }
 
 /**
@@ -46,6 +61,26 @@ export type ListRadicalsResponse = Array<string> & {
        * The response body as parsed JSON or XML
        */
       parsedBody: string[];
+    };
+};
+
+/**
+ * Contains response data for the selectRadicals operation.
+ */
+export type SelectRadicalsResponse = KanjiLookupResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: KanjiLookupResult;
     };
 };
 

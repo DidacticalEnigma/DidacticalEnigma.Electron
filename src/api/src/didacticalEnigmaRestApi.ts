@@ -44,6 +44,29 @@ class DidacticalEnigmaRestApi extends DidacticalEnigmaRestApiContext {
 
   /**
    * @param [options] The optional parameters
+   * @returns Promise<Models.SelectRadicalsResponse>
+   */
+  selectRadicals(options?: Models.DidacticalEnigmaRestApiSelectRadicalsOptionalParams): Promise<Models.SelectRadicalsResponse>;
+  /**
+   * @param callback The callback
+   */
+  selectRadicals(callback: msRest.ServiceCallback<Models.KanjiLookupResult>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  selectRadicals(options: Models.DidacticalEnigmaRestApiSelectRadicalsOptionalParams, callback: msRest.ServiceCallback<Models.KanjiLookupResult>): void;
+  selectRadicals(options?: Models.DidacticalEnigmaRestApiSelectRadicalsOptionalParams | msRest.ServiceCallback<Models.KanjiLookupResult>, callback?: msRest.ServiceCallback<Models.KanjiLookupResult>): Promise<Models.SelectRadicalsResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      selectRadicalsOperationSpec,
+      callback) as Promise<Models.SelectRadicalsResponse>;
+  }
+
+  /**
+   * @param [options] The optional parameters
    * @returns Promise<Models.GetWordInformationResponse>
    */
   getWordInformation(options?: Models.DidacticalEnigmaRestApiGetWordInformationOptionalParams): Promise<Models.GetWordInformationResponse>;
@@ -84,6 +107,21 @@ const listRadicalsOperationSpec: msRest.OperationSpec = {
           }
         }
       }
+    },
+    default: {}
+  },
+  serializer
+};
+
+const selectRadicalsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "radicals/select",
+  queryParameters: [
+    Parameters.radical
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.KanjiLookupResult
     },
     default: {}
   },
