@@ -15,8 +15,11 @@ function createWindow() {
     height: 768,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    useContentSize: true
   });
+
+  mainWindow.removeMenu();
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({

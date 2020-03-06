@@ -18,6 +18,18 @@ export const fullText: msRest.OperationQueryParameter = {
     }
   }
 };
+export const identifier: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "identifier"
+  ],
+  mapper: {
+    serializedName: "identifier",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const radical: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",

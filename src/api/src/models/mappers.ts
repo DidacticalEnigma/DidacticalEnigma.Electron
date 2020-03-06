@@ -6,6 +6,71 @@
 import * as msRest from "@azure/ms-rest-js";
 
 
+export const DataSourceInformation: msRest.CompositeMapper = {
+  serializedName: "DataSourceInformation",
+  type: {
+    name: "Composite",
+    className: "DataSourceInformation",
+    modelProperties: {
+      identifier: {
+        serializedName: "identifier",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const DataSourceParseRequest: msRest.CompositeMapper = {
+  serializedName: "DataSourceParseRequest",
+  type: {
+    name: "Composite",
+    className: "DataSourceParseRequest",
+    modelProperties: {
+      requestedDataSources: {
+        serializedName: "requestedDataSources",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "String"
+            }
+          }
+        }
+      },
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
+      position: {
+        serializedName: "position",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const DataSourceParseResponse: msRest.CompositeMapper = {
+  serializedName: "DataSourceParseResponse",
+  type: {
+    name: "Composite",
+    className: "DataSourceParseResponse",
+    modelProperties: {
+      context: {
+        serializedName: "context",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const KanjiLookupResult: msRest.CompositeMapper = {
   serializedName: "KanjiLookupResult",
   type: {
@@ -58,6 +123,39 @@ export const WordInfo: msRest.CompositeMapper = {
       },
       reading: {
         serializedName: "reading",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const WordInfoResponse: msRest.CompositeMapper = {
+  serializedName: "WordInfoResponse",
+  type: {
+    name: "Composite",
+    className: "WordInfoResponse",
+    modelProperties: {
+      wordInformation: {
+        serializedName: "wordInformation",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Sequence",
+              element: {
+                type: {
+                  name: "Composite",
+                  className: "WordInfo"
+                }
+              }
+            }
+          }
+        }
+      },
+      identifier: {
+        serializedName: "identifier",
         type: {
           name: "String"
         }

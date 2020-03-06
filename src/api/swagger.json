@@ -5,6 +5,68 @@
     "version": "v1"
   },
   "paths": {
+    "/dataSource/list": {
+      "get": {
+        "tags": [
+          "DataSource"
+        ],
+        "operationId": "ListDataSources",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataSourceInformation"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataSource/request": {
+      "post": {
+        "tags": [
+          "DataSource"
+        ],
+        "operationId": "RequestInformationFromDataSources",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DataSourceParseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/DataSourceParseResponse"
+              }
+            }
+          }
+        }
+      }
+    },
     "/radicals/list": {
       "get": {
         "tags": [
@@ -89,10 +151,88 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "WordInfo"
+        ],
+        "operationId": "PostText",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fullText",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/WordInfoResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "WordInfo"
+        ],
+        "operationId": "DeleteText",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "identifier",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     }
   },
   "definitions": {
+    "DataSourceInformation": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        }
+      }
+    },
+    "DataSourceParseRequest": {
+      "type": "object",
+      "properties": {
+        "requestedDataSources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "position": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "DataSourceParseResponse": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "string"
+        }
+      }
+    },
     "KanjiLookupResult": {
       "type": "object",
       "properties": {
@@ -120,6 +260,23 @@
           "type": "string"
         },
         "reading": {
+          "type": "string"
+        }
+      }
+    },
+    "WordInfoResponse": {
+      "type": "object",
+      "properties": {
+        "wordInformation": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/WordInfo"
+            }
+          }
+        },
+        "identifier": {
           "type": "string"
         }
       }
