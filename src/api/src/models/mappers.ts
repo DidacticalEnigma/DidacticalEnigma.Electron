@@ -13,6 +13,7 @@ export const DataSourceInformation: msRest.CompositeMapper = {
     className: "DataSourceInformation",
     modelProperties: {
       identifier: {
+        required: true,
         serializedName: "identifier",
         type: {
           name: "String"
@@ -66,6 +67,12 @@ export const DataSourceParseResponse: msRest.CompositeMapper = {
         type: {
           name: "String"
         }
+      },
+      error: {
+        serializedName: "error",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -78,6 +85,7 @@ export const KanjiLookupResult: msRest.CompositeMapper = {
     className: "KanjiLookupResult",
     modelProperties: {
       kanji: {
+        required: true,
         serializedName: "kanji",
         type: {
           name: "Sequence",
@@ -89,6 +97,7 @@ export const KanjiLookupResult: msRest.CompositeMapper = {
         }
       },
       possibleRadicals: {
+        required: true,
         serializedName: "possibleRadicals",
         type: {
           name: "Sequence",
@@ -110,18 +119,21 @@ export const WordInfo: msRest.CompositeMapper = {
     className: "WordInfo",
     modelProperties: {
       text: {
+        required: true,
         serializedName: "text",
         type: {
           name: "String"
         }
       },
       dictionaryForm: {
+        required: true,
         serializedName: "dictionaryForm",
         type: {
           name: "String"
         }
       },
       reading: {
+        required: true,
         serializedName: "reading",
         type: {
           name: "String"
@@ -138,6 +150,7 @@ export const WordInfoResponse: msRest.CompositeMapper = {
     className: "WordInfoResponse",
     modelProperties: {
       wordInformation: {
+        required: true,
         serializedName: "wordInformation",
         type: {
           name: "Sequence",
@@ -155,6 +168,7 @@ export const WordInfoResponse: msRest.CompositeMapper = {
         }
       },
       identifier: {
+        required: true,
         serializedName: "identifier",
         type: {
           name: "String"

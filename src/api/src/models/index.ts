@@ -10,7 +10,7 @@ import * as msRest from "@azure/ms-rest-js";
  * An interface representing DataSourceInformation.
  */
 export interface DataSourceInformation {
-  identifier?: string;
+  identifier: string;
 }
 
 /**
@@ -27,31 +27,32 @@ export interface DataSourceParseRequest {
  */
 export interface DataSourceParseResponse {
   context?: string;
+  error?: string;
 }
 
 /**
  * An interface representing KanjiLookupResult.
  */
 export interface KanjiLookupResult {
-  kanji?: string[];
-  possibleRadicals?: string[];
+  kanji: string[];
+  possibleRadicals: string[];
 }
 
 /**
  * An interface representing WordInfo.
  */
 export interface WordInfo {
-  text?: string;
-  dictionaryForm?: string;
-  reading?: string;
+  text: string;
+  dictionaryForm: string;
+  reading: string;
 }
 
 /**
  * An interface representing WordInfoResponse.
  */
 export interface WordInfoResponse {
-  wordInformation?: WordInfo[][];
-  identifier?: string;
+  wordInformation: WordInfo[][];
+  identifier: string;
 }
 
 /**

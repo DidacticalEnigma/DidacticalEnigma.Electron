@@ -74,17 +74,34 @@ body {
     padding: 0;
     overflow: hidden;
 }
+.japanese-input {
+    
+}
+.grid {
+    display: grid;
+    height: 100%;
+}
+.grid > div {
+    height: 100%;
+}
+.data-sources {
+    height: 100%;
+    overflow-y: scroll;
+}
 .radicals {
     display: grid;
     height: 100%;
     grid-template-columns: repeat(2, [col] 50% );
+    grid-template-rows: 100%;
 }
-.radicals-radicalselector {
+.radicals .radicals-radicalselector {
     grid-column: 1;
+    grid-row: 1;
     overflow-y: scroll;
 }
-.radicals-kanjiresults {
+.radicals .radicals-kanjiresults {
     grid-column: 2;
+    grid-row: 1;
     overflow-y: scroll;
 }
 .radicals-radicalselectoroption {
@@ -101,4 +118,21 @@ body {
 }
 .radicals-radicalselected {
     color: red;
+}
+.tabcontrol-header button {
+    float: left;
+}
+.tabcontrol-header:after {
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0; 
+    clear: both;
+}
+.tabcontrol-tabcontent {
+    display: none;
+}
+.tabcontrol-tabcontent-selected {
+    display: block;
+    height: 100%;
 }

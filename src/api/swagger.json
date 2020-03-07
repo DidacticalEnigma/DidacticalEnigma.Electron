@@ -200,6 +200,9 @@
   },
   "definitions": {
     "DataSourceInformation": {
+      "required": [
+        "identifier"
+      ],
       "type": "object",
       "properties": {
         "identifier": {
@@ -230,10 +233,17 @@
       "properties": {
         "context": {
           "type": "string"
+        },
+        "error": {
+          "type": "string"
         }
       }
     },
     "KanjiLookupResult": {
+      "required": [
+        "kanji",
+        "possibleRadicals"
+      ],
       "type": "object",
       "properties": {
         "kanji": {
@@ -251,6 +261,11 @@
       }
     },
     "WordInfo": {
+      "required": [
+        "dictionaryForm",
+        "reading",
+        "text"
+      ],
       "type": "object",
       "properties": {
         "text": {
@@ -265,6 +280,10 @@
       }
     },
     "WordInfoResponse": {
+      "required": [
+        "identifier",
+        "wordInformation"
+      ],
       "type": "object",
       "properties": {
         "wordInformation": {

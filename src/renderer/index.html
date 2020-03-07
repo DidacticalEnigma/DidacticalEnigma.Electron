@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-<!-- https://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined -->
-    <title>DidacticalEnigma.Electron</title>
-    <link rel="stylesheet" href="./index.css">
-    <script src="./dist/ui-bundle.js" type="text/javascript"></script>
-    <script>if (window.module) module = window.module;</script>
-  </head>
-  <body>
-    
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>DidacticalEnigma.Electron</title>
+  <link rel="stylesheet" href="./index.css">
+  <!-- https://github.com/Azure/ms-rest-js/issues/329 -->
+  <script>window.process = undefined;</script>
+  <script src="./dist/ui-bundle.js" type="text/javascript"></script>
+  <!-- https://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined -->
+  <script>if (window.module) module = window.module;</script>
+</head>
+
+<body>
+  <div class="grid" style="grid-template-rows: 10% 90%;">
+    <div class="japanese-input" style="grid-row: 1;">
+      <textarea></textarea>
+      <input type="text"></input>
+      <button>AAAA</button>
+    </div>
+    <div class="tabcontrol" style="grid-row: 2;">
+      <div class="tabcontrol-header">
+        <div class="tabcontrol-tab" data-tabname="Usage #1"></div>
+        <div class="tabcontrol-tab" data-tabname="Kanji"></div>
+        <div class="tabcontrol-tab" data-tabname="About"></div>
+      </div>
+      <div class="tabcontrol-tabcontent tabcontrol-tabcontent-selected">
+        <div class="data-sources"></div>
+      </div>
+      <div class="tabcontrol-tabcontent">
+        <div class="radicals grid">
+          <div class="radicals-radicalselector"></div>
+          <div class="radicals-kanjiresults"></div>
+        </div>
+      </div>
+      <div class="tabcontrol-tabcontent">
+        <div class="about">
+          DidacticalEnigma.Electron
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
