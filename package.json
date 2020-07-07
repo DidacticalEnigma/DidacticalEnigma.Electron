@@ -11,7 +11,7 @@
   "dependencies": {
     "@azure/ms-rest-js": "^1.0.1",
     "@types/lodash": "^4.14.149",
-    "electron": "^8.0.2",
+    "electron": "^8.2.4",
     "lodash": "^4.17.15",
     "typescript": "^2.7.2",
     "webpack": "^4.0.1"
