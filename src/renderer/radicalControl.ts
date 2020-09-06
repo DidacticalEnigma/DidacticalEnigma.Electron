@@ -1,4 +1,4 @@
-import { map } from "lodash";
+import { map, join } from "lodash";
 import { removeAllChildElements } from "./utility";
 import { RadicalLookup } from "./radicalLookup";
 
@@ -22,9 +22,9 @@ export async function radicalControlAttachJs(radicalLookup: RadicalLookup) {
 }
 
 async function updateKanjiResults(radicalRoot: Element, radicalLookup: RadicalLookup) {
-    const result = await radicalLookup.selectRadicals(map(
+    const result = await radicalLookup.selectRadicals(join(map(
         radicalRoot.getElementsByClassName("radicals-radicalselected"),
-        (e) => (e as HTMLButtonElement).innerText));
+        (e) => (e as HTMLButtonElement).innerText), " "));
 
     const kanjiResultElementsRootDiv = radicalRoot.getElementsByClassName("radicals-kanjiresults")[0];
     removeAllChildElements(kanjiResultElementsRootDiv);

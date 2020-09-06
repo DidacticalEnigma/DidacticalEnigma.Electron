@@ -1,4 +1,3 @@
-import { join } from "lodash";
 import { api } from "./api"
 
 export class RadicalLookup {
@@ -6,9 +5,9 @@ export class RadicalLookup {
         return await api.listRadicals();
     }
 
-    public async selectRadicals(radicals: Array<string>) {
+    public async selectRadicals(radicals: string) {
         return await api.selectRadicals({
-            radical: join(radicals, ",")
+            query: radicals
         });
     }
 }

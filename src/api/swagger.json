@@ -105,7 +105,7 @@
         "parameters": [
           {
             "in": "query",
-            "name": "radical",
+            "name": "query",
             "type": "string"
           }
         ],
@@ -242,7 +242,8 @@
     "KanjiLookupResult": {
       "required": [
         "kanji",
-        "possibleRadicals"
+        "possibleRadicals",
+        "usedRadicals"
       ],
       "type": "object",
       "properties": {
@@ -253,6 +254,12 @@
           }
         },
         "possibleRadicals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "usedRadicals": {
           "type": "array",
           "items": {
             "type": "string"

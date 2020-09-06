@@ -92,16 +92,30 @@ body {
     display: grid;
     height: 100%;
     grid-template-columns: repeat(2, [col] 50% );
-    grid-template-rows: 100%;
+    grid-template-rows: auto auto;
+}
+.radicals .radicals-optionsbar {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row: 1;
+    overflow-y: scroll;
+}
+.radicals .radicals-optionsbar .left-group {
+    float: left;
+    text-align: left;
+}
+.radicals .radicals-optionsbar .right-group {
+    float: right;
+    text-align: right;
 }
 .radicals .radicals-radicalselector {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
     overflow-y: scroll;
 }
 .radicals .radicals-kanjiresults {
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
     overflow-y: scroll;
 }
 .radicals-radicalselectoroption {

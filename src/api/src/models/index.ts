@@ -36,6 +36,7 @@ export interface DataSourceParseResponse {
 export interface KanjiLookupResult {
   kanji: string[];
   possibleRadicals: string[];
+  usedRadicals: string[];
 }
 
 /**
@@ -73,7 +74,7 @@ export interface DidacticalEnigmaRestApiRequestInformationFromDataSourcesOptiona
  * Optional Parameters.
  */
 export interface DidacticalEnigmaRestApiSelectRadicalsOptionalParams extends msRest.RequestOptionsBase {
-  radical?: string;
+  query?: string;
 }
 
 /**

@@ -30,13 +30,13 @@ export const identifier: msRest.OperationQueryParameter = {
     }
   }
 };
-export const radical: msRest.OperationQueryParameter = {
+export const query: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
-    "radical"
+    "query"
   ],
   mapper: {
-    serializedName: "radical",
+    serializedName: "query",
     type: {
       name: "String"
     }

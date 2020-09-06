@@ -262,7 +262,7 @@ const selectRadicalsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "radicals/select",
   queryParameters: [
-    Parameters.radical
+    Parameters.query
   ],
   responses: {
     200: {

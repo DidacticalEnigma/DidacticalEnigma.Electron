@@ -107,6 +107,18 @@ export const KanjiLookupResult: msRest.CompositeMapper = {
             }
           }
         }
+      },
+      usedRadicals: {
+        required: true,
+        serializedName: "usedRadicals",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "String"
+            }
+          }
+        }
       }
     }
   }
