@@ -31,12 +31,20 @@ export interface DataSourceParseResponse {
 }
 
 /**
+ * An interface representing ListRadicalsResult.
+ */
+export interface ListRadicalsResult {
+  possibleRadicals: string[];
+  sortingCriteria: string[];
+}
+
+/**
  * An interface representing KanjiLookupResult.
  */
 export interface KanjiLookupResult {
   kanji: string[];
   possibleRadicals: string[];
-  usedRadicals: string[];
+  usedRadicals: { [propertyName: string]: string };
 }
 
 /**
@@ -75,6 +83,7 @@ export interface DidacticalEnigmaRestApiRequestInformationFromDataSourcesOptiona
  */
 export interface DidacticalEnigmaRestApiSelectRadicalsOptionalParams extends msRest.RequestOptionsBase {
   query?: string;
+  sort?: string;
 }
 
 /**
@@ -146,7 +155,7 @@ export type RequestInformationFromDataSourcesResponse = {
 /**
  * Contains response data for the listRadicals operation.
  */
-export type ListRadicalsResponse = Array<string> & {
+export type ListRadicalsResponse = ListRadicalsResult & {
   /**
    * The underlying HTTP response.
    */
@@ -159,7 +168,7 @@ export type ListRadicalsResponse = Array<string> & {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: string[];
+      parsedBody: ListRadicalsResult;
     };
 };
 

@@ -42,3 +42,15 @@ export const query: msRest.OperationQueryParameter = {
     }
   }
 };
+export const sort: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "sort"
+  ],
+  mapper: {
+    serializedName: "sort",
+    type: {
+      name: "String"
+    }
+  }
+};

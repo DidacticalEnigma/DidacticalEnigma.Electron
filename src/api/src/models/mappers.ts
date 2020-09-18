@@ -78,6 +78,40 @@ export const DataSourceParseResponse: msRest.CompositeMapper = {
   }
 };
 
+export const ListRadicalsResult: msRest.CompositeMapper = {
+  serializedName: "ListRadicalsResult",
+  type: {
+    name: "Composite",
+    className: "ListRadicalsResult",
+    modelProperties: {
+      possibleRadicals: {
+        required: true,
+        serializedName: "possibleRadicals",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "String"
+            }
+          }
+        }
+      },
+      sortingCriteria: {
+        required: true,
+        serializedName: "sortingCriteria",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
 export const KanjiLookupResult: msRest.CompositeMapper = {
   serializedName: "KanjiLookupResult",
   type: {
@@ -112,8 +146,8 @@ export const KanjiLookupResult: msRest.CompositeMapper = {
         required: true,
         serializedName: "usedRadicals",
         type: {
-          name: "Sequence",
-          element: {
+          name: "Dictionary",
+          value: {
             type: {
               name: "String"
             }

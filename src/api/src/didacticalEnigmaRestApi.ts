@@ -73,13 +73,13 @@ class DidacticalEnigmaRestApi extends DidacticalEnigmaRestApiContext {
   /**
    * @param callback The callback
    */
-  listRadicals(callback: msRest.ServiceCallback<string[]>): void;
+  listRadicals(callback: msRest.ServiceCallback<Models.ListRadicalsResult>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  listRadicals(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  listRadicals(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ListRadicalsResponse> {
+  listRadicals(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ListRadicalsResult>): void;
+  listRadicals(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ListRadicalsResult>, callback?: msRest.ServiceCallback<Models.ListRadicalsResult>): Promise<Models.ListRadicalsResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -241,17 +241,7 @@ const listRadicalsOperationSpec: msRest.OperationSpec = {
   path: "radicals/list",
   responses: {
     200: {
-      bodyMapper: {
-        serializedName: "parsedResponse",
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
+      bodyMapper: Mappers.ListRadicalsResult
     },
     default: {}
   },
@@ -262,7 +252,8 @@ const selectRadicalsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "radicals/select",
   queryParameters: [
-    Parameters.query
+    Parameters.query,
+    Parameters.sort
   ],
   responses: {
     200: {

@@ -1,30 +1,55 @@
-import { map, join } from "lodash";
 import { removeAllChildElements } from "./utility";
 import { RadicalLookup } from "./radicalLookup";
 
 export async function radicalControlAttachJs(radicalLookup: RadicalLookup) {
-    const radicals = await radicalLookup.getRadicals();
+    const radicalsResult = await radicalLookup.getRadicals();
 
     for (const radicalRoot of document.getElementsByClassName("radicals")) {
         const radicalSelector = radicalRoot.getElementsByClassName("radicals-radicalselector")[0];
+        const radicalSearchEditBox = radicalRoot.getElementsByClassName("radicals-searchbox")[0] as HTMLInputElement;
+        const radicalSearchCriteriaSelect = radicalRoot.getElementsByClassName("radicals-sort-criteria")[0] as HTMLSelectElement;
 
-        for (const radical of radicals) {
+        radicalSearchEditBox.addEventListener("keydown", async function(ev) {
+            if (ev.key !== "Enter")
+                return;
+            
+            const queryText = radicalSearchEditBox.value;
+            await updateKanjiResults(radicalRoot, radicalLookup, queryText);
+            return true;
+        });
+
+        for (const radicalCriterion of radicalsResult.sortingCriteria) {
+            const option = document.createElement("option");
+            option.value = radicalCriterion;
+            option.innerText = radicalCriterion;
+            radicalSearchCriteriaSelect.appendChild(option);
+        }
+
+        for (const radical of radicalsResult.possibleRadicals) {
             const button = document.createElement("button");
             button.setAttribute("class", "radicals-radicalselectoroption");
             button.innerText = radical;
             button.addEventListener("click", async function () {
-                button.classList.toggle("radicals-radicalselected");
-                await updateKanjiResults(radicalRoot, radicalLookup);
+                let queryText = radicalSearchEditBox.value;
+                if (button.classList.contains("radicals-radicalselected"))
+                {
+                    queryText = queryText.replace(button.innerText, "");
+                }
+                else
+                {
+                    queryText += " " + button.innerText;
+                }
+                queryText = queryText.trim();
+                radicalSearchEditBox.value = queryText;
+                await updateKanjiResults(radicalRoot, radicalLookup, queryText);
             });
             radicalSelector.appendChild(button);
         }
     }
 }
 
-async function updateKanjiResults(radicalRoot: Element, radicalLookup: RadicalLookup) {
-    const result = await radicalLookup.selectRadicals(join(map(
-        radicalRoot.getElementsByClassName("radicals-radicalselected"),
-        (e) => (e as HTMLButtonElement).innerText), " "));
+async function updateKanjiResults(radicalRoot: Element, radicalLookup: RadicalLookup, queryText: string) {
+    const result = await radicalLookup.selectRadicals(queryText);
 
     const kanjiResultElementsRootDiv = radicalRoot.getElementsByClassName("radicals-kanjiresults")[0];
     removeAllChildElements(kanjiResultElementsRootDiv);
@@ -37,6 +62,7 @@ async function updateKanjiResults(radicalRoot: Element, radicalLookup: RadicalLo
         kanjiResultElementsRootDiv.appendChild(kanjiButton);
     }
 
+    const usedRadicals = new Set<string>(Object.values(result.usedRadicals));
     const possibleRadicals = new Set<string>(result.possibleRadicals);
 
     for (const radical of radicalRoot.getElementsByClassName("radicals-radicalselectoroption")) {
@@ -45,6 +71,13 @@ async function updateKanjiResults(radicalRoot: Element, radicalLookup: RadicalLo
         }
         else {
             radical.setAttribute("disabled", "");
+        }
+
+        if (usedRadicals.has((radical as HTMLButtonElement).innerText)) {
+            radical.classList.add("radicals-radicalselected");
+        }
+        else {
+            radical.classList.remove("radicals-radicalselected");
         }
     }
 }

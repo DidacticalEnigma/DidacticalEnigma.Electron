@@ -82,10 +82,7 @@
           "200": {
             "description": "Success",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
+              "$ref": "#/definitions/ListRadicalsResult"
             }
           }
         }
@@ -106,6 +103,11 @@
           {
             "in": "query",
             "name": "query",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort",
             "type": "string"
           }
         ],
@@ -239,6 +241,27 @@
         }
       }
     },
+    "ListRadicalsResult": {
+      "required": [
+        "possibleRadicals",
+        "sortingCriteria"
+      ],
+      "type": "object",
+      "properties": {
+        "possibleRadicals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sortingCriteria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "KanjiLookupResult": {
       "required": [
         "kanji",
@@ -260,8 +283,8 @@
           }
         },
         "usedRadicals": {
-          "type": "array",
-          "items": {
+          "type": "object",
+          "additionalProperties": {
             "type": "string"
           }
         }

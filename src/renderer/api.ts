@@ -1,6 +1,6 @@
 import { DidacticalEnigmaRestApiModels } from "../api/src/didacticalEnigmaRestApi";
-//import { DidacticalEnigmaRestApi } from "../api/src/didacticalEnigmaRestApi";
-import { MockDidacticalEnigmaApi } from "./mockApi";
+import { DidacticalEnigmaRestApi } from "../api/src/didacticalEnigmaRestApi";
+//import { MockDidacticalEnigmaApi } from "./mockApi";
 
 export interface DidacticalEnigmaApi {
     listDataSources(): Promise<DidacticalEnigmaRestApiModels.ListDataSourcesResponse>;
@@ -12,5 +12,5 @@ export interface DidacticalEnigmaApi {
     deleteText(options: DidacticalEnigmaRestApiModels.DidacticalEnigmaRestApiDeleteTextOptionalParams): Promise<unknown>;
 }
 
-//export const api : DidacticalEnigmaApi = new DidacticalEnigmaRestApi({ baseUri: "http://localhost:5000" });
-export const api : DidacticalEnigmaApi = new MockDidacticalEnigmaApi;
+export const api : DidacticalEnigmaApi = new DidacticalEnigmaRestApi({ baseUri: "http://localhost:5000" });
+//export const api : DidacticalEnigmaApi = new MockDidacticalEnigmaApi;
