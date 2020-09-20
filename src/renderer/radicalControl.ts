@@ -41,15 +41,23 @@ export async function radicalControlAttachJs(radicalLookup: RadicalLookup) {
                 }
                 queryText = queryText.trim();
                 radicalSearchEditBox.value = queryText;
-                await updateKanjiResults(radicalRoot, radicalLookup, queryText);
+                await updateKanjiResults(radicalRoot, radicalLookup, queryText, radicalSearchCriteriaSelect.selectedOptions[0].value);
             });
             radicalSelector.appendChild(button);
         }
+
+        radicalSearchCriteriaSelect.addEventListener("change", async function(){
+            await updateKanjiResults(radicalRoot, radicalLookup, radicalSearchEditBox.value, radicalSearchCriteriaSelect.selectedOptions[0].value);
+        });
     }
 }
 
-async function updateKanjiResults(radicalRoot: Element, radicalLookup: RadicalLookup, queryText: string) {
-    const result = await radicalLookup.selectRadicals(queryText);
+async function updateKanjiResults(
+    radicalRoot: Element,
+    radicalLookup: RadicalLookup,
+    queryText: string,
+    sortCriterion?: string) {
+    const result = await radicalLookup.selectRadicals(queryText, sortCriterion);
 
     const kanjiResultElementsRootDiv = radicalRoot.getElementsByClassName("radicals-kanjiresults")[0];
     removeAllChildElements(kanjiResultElementsRootDiv);

@@ -5,9 +5,10 @@ export class RadicalLookup {
         return await api.listRadicals();
     }
 
-    public async selectRadicals(radicals: string) {
+    public async selectRadicals(radicals: string, sort?: string) {
         return await api.selectRadicals({
-            query: radicals
+            query: radicals,
+            sort: sort
         });
     }
 }

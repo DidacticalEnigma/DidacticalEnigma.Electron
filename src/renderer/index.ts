@@ -1,19 +1,22 @@
-import { map } from "lodash";
-import { tabControlAttachJs } from "./tabControl"
-import { removeAllChildElements } from "./utility"
+import { tabControlAttachJs } from "./tabControl";
 import { api } from "./api"
-import { generateHtmlFromRichFormatting } from "./richFormatting"
 import { RadicalLookup } from "./radicalLookup";
+import { DataSourceLookup } from "./dataSourceLookup";
 import { radicalControlAttachJs } from "./radicalControl";
+import { dataSourceGridAttachJs, dataSourceGridLookup } from "./dataSourceGrid";
 
 window.addEventListener('load', async () => {
   const radicalLookup = new RadicalLookup();
+  const dataSourceLookup = new DataSourceLookup();
 
   tabControlAttachJs();
   await radicalControlAttachJs(radicalLookup);
-});
+  await dataSourceGridAttachJs(dataSourceLookup);
 
-window.addEventListener('load', async () => {
+
+
+
+
   const japaneseInput = document.getElementsByClassName("japanese-input")[0];
   const textArea = japaneseInput.getElementsByTagName("textarea")[0];
   const button = japaneseInput.getElementsByTagName("button")[0];
@@ -31,29 +34,7 @@ window.addEventListener('load', async () => {
     });
     identifier = resultPost.identifier;
 
-    const resultList = map(await api.listDataSources(), (r) => r.identifier);
-    const resultLookup = await api.requestInformationFromDataSources({
-      body: {
-        id: resultPost.identifier,
-        position: parseInt(input.value, 10),
-        requestedDataSources: resultList
-      }
-    });
-    removeAllChildElements(dataSources);
-    for (const identifer of resultList) {
-      let content = resultLookup[identifer].context;
-      if(content) {
-        const el = generateHtmlFromRichFormatting(content);
-        dataSources.appendChild(el);
-      }
-      else {
-        const errorDiv = document.createElement("div");
-        errorDiv.innerText = "ERROR";
-        dataSources.appendChild(errorDiv);
-      }
-    }
+    await dataSourceGridLookup(dataSources, dataSourceLookup, identifier, parseInt(input.value, 10));
   });
 });
-
-
 

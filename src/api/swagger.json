@@ -203,11 +203,15 @@
   "definitions": {
     "DataSourceInformation": {
       "required": [
+        "friendlyName",
         "identifier"
       ],
       "type": "object",
       "properties": {
         "identifier": {
+          "type": "string"
+        },
+        "friendlyName": {
           "type": "string"
         }
       }

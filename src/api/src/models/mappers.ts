@@ -18,6 +18,13 @@ export const DataSourceInformation: msRest.CompositeMapper = {
         type: {
           name: "String"
         }
+      },
+      friendlyName: {
+        required: true,
+        serializedName: "friendlyName",
+        type: {
+          name: "String"
+        }
       }
     }
   }

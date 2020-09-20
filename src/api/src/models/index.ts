@@ -11,6 +11,7 @@ import * as msRest from "@azure/ms-rest-js";
  */
 export interface DataSourceInformation {
   identifier: string;
+  friendlyName: string;
 }
 
 /**
