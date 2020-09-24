@@ -26,7 +26,7 @@ export function notNull<TValue>(value: TValue | null): value is TValue {
     return value !== null;
 }
 
-export function makeElement(elementDescription: {tagName: string, attributes?: Iterable<[string, string]>, classes?: Iterable<string>, elements?: Iterable<Element>, innerText?: string}) {
+export function makeElement(elementDescription: {tagName: string, attributes?: Iterable<[string, string]>, classes?: Iterable<string>, elements?: Iterable<Element>, innerText?: string, andAlso?: (element: HTMLElement) => void}) {
     const element = document.createElement(elementDescription.tagName);
 
     if(elementDescription.classes) {
@@ -49,6 +49,10 @@ export function makeElement(elementDescription: {tagName: string, attributes?: I
 
     if(elementDescription.innerText !== undefined) {
         element.innerText = elementDescription.innerText;
+    }
+
+    if(elementDescription.andAlso !== undefined) {
+        elementDescription.andAlso(element);
     }
 
     return element;
