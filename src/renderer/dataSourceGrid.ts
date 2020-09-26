@@ -33,7 +33,7 @@ function createViewer(dataSources: ListDataSourcesResponse) {
                 innerText: "V",
                 andAlso: (element) => {
                     element.addEventListener("click", () => {
-                        createSplit(dataSources, element.parentElement!, "vsplit");
+                        createSplit(dataSources, element.parentElement!, "vertical");
                     })
                 }
             }),
@@ -42,7 +42,7 @@ function createViewer(dataSources: ListDataSourcesResponse) {
                 innerText: "H",
                 andAlso: (element) => {
                     element.addEventListener("click", () => {
-                        createSplit(dataSources, element.parentElement!, "hsplit");
+                        createSplit(dataSources, element.parentElement!, "horizontal");
                     })
                 }
             }),
@@ -59,25 +59,35 @@ function createViewer(dataSources: ListDataSourcesResponse) {
     })
 }
 
-function createSplit(dataSources: ListDataSourcesResponse, dataSourceViewer: Element, type: "vsplit" | "hsplit") {
+function createSplit(dataSources: ListDataSourcesResponse, dataSourceViewer: HTMLElement, type: "horizontal" | "vertical") {
     const parent = dataSourceViewer.parentElement;
     if(parent == null) {
         throw "Should not be a root node";
     }
+    const typeSuffix = function() {
+        if(type == "horizontal") {
+            return "hsplit";
+        }
+        if(type == "vertical") {
+            return "vsplit";
+        }
+    }();
     if(parent.classList.contains("data-sources") ||
        parent.classList.contains("data-source-vsplit") ||
        parent.classList.contains("data-source-hsplit")) {
         const split = makeElement({
             tagName: "div",
-            classes: ["data-source-" + type]
+            classes: ["data-source-" + typeSuffix]
         });
         dataSourceViewer.replaceWith(split);
-        split.appendChild(dataSourceViewer);
-        split.appendChild(createViewer(dataSources));
+        const one = dataSourceViewer;
+        const two = createViewer(dataSources);
+        split.appendChild(one);
+        split.appendChild(two);
     }
 }
 
-function closeSplit(dataSourceViewer: Element) {
+function closeSplit(dataSourceViewer: HTMLElement) {
     const parent = dataSourceViewer.parentElement;
     if(parent == null) {
         throw "Should not be a root node";

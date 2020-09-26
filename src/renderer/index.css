@@ -68,13 +68,11 @@
 }
 body {
     font-family: "Segoe UI", "Open Sans", "IPAexGothic";
-    width: 100vw;
-    height: 100vh;
-    max-width: 100%;
-    max-height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    width: 95vw;
+    height: 95vh;
+    margin: 2.5vh 2.5vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 .japanese-input {
     
@@ -83,24 +81,23 @@ body {
     display: grid;
     height: 100%;
 }
-.grid > div {
-    height: 100%;
-}
 .data-sources {
     height: 100%;
-    overflow-y: scroll;
+    overflow: auto;
 }
 .data-source-vsplit {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    height: 100%;
-}
-.data-source-hsplit {
     display: flex;
     flex-direction: row;
     flex: 1;
     height: 100%;
+    overflow: auto;
+}
+.data-source-hsplit {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    overflow: auto;
 }
 .data-source-viewer {
     flex: 1;
@@ -108,16 +105,39 @@ body {
     height: 100%;
     overflow-y: scroll;
 }
+.gutter {
+    background-color: #eee;
+
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+.gutter.gutter-horizontal {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+    cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+    cursor: row-resize;
+}
 .radicals {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    grid-template-columns: repeat(2, [col] 50% );
-    grid-template-rows: auto auto;
 }
 .radicals .radicals-optionsbar {
-    grid-column-start: 1;
-    grid-column-end: span 2;
-    grid-row: 1;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+input.radicals-searchbox {
+    margin: 2px 0px 2px 0px;
+    padding: 0.3em;
+}
+.radicals .radicals-bottom {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    overflow: auto;
 }
 .radicals .radicals-optionsbar .left-group {
     float: left;
@@ -129,12 +149,10 @@ body {
 }
 .radicals .radicals-radicalselector {
     grid-column: 1;
-    grid-row: 2;
     overflow-y: scroll;
 }
 .radicals .radicals-kanjiresults {
     grid-column: 2;
-    grid-row: 2;
     overflow-y: scroll;
 }
 .radicals-radicalselectoroption {
@@ -152,6 +170,17 @@ body {
 .radicals-radicalselected {
     color: red;
 }
+.tabcontrol {
+    display: flex;
+    flex-direction: column;
+}
+.tabcontrol-header {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.tabcontrol-tabcontent {
+    flex-grow: 1;
+}
 .tabcontrol-header button {
     float: left;
 }
@@ -168,4 +197,5 @@ body {
 .tabcontrol-tabcontent-selected {
     display: block;
     height: 100%;
+    overflow: auto;
 }

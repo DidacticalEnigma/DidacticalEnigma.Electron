@@ -14,14 +14,14 @@
 
 <body>
   <div class="grid" style="grid-template-rows: 10% 90%;">
-    <div class="japanese-input" style="grid-row: 1;">
+    <div class="japanese-input">
       <textarea></textarea>
-      <input type="text"></input>
-      <button>AAAA</button>
     </div>
-    <div class="tabcontrol" style="grid-row: 2;">
+    <div class="tabcontrol" style="grid-row: 2">
       <div class="tabcontrol-header">
         <div class="tabcontrol-tab" data-tabname="Usage #1"></div>
+        <div class="tabcontrol-tab" data-tabname="Usage #2"></div>
+        <div class="tabcontrol-tab" data-tabname="Usage #3"></div>
         <div class="tabcontrol-tab" data-tabname="Kanji"></div>
         <div class="tabcontrol-tab" data-tabname="About"></div>
       </div>
@@ -29,7 +29,13 @@
         <div class="data-sources"></div>
       </div>
       <div class="tabcontrol-tabcontent">
-        <div class="radicals grid">
+        <div class="data-sources"></div>
+      </div>
+      <div class="tabcontrol-tabcontent">
+        <div class="data-sources"></div>
+      </div>
+      <div class="tabcontrol-tabcontent">
+        <div class="radicals">
           <div class="radicals-optionsbar">
             <div class="left-group">
               <input type="text" name="search" class="radicals-searchbox">
@@ -39,8 +45,10 @@
               <select class="radicals-sort-criteria" name="sort-criteria"></select>
             </div>
           </div>
-          <div class="radicals-radicalselector"></div>
-          <div class="radicals-kanjiresults"></div>
+          <div class="radicals-bottom">
+            <div class="radicals-radicalselector"></div>
+            <div class="radicals-kanjiresults"></div>
+          </div>
         </div>
       </div>
       <div class="tabcontrol-tabcontent">

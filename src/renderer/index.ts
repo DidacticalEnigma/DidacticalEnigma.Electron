@@ -19,13 +19,21 @@ window.addEventListener('load', async () => {
 
   const japaneseInput = document.getElementsByClassName("japanese-input")[0];
   const textArea = japaneseInput.getElementsByTagName("textarea")[0];
-  const button = japaneseInput.getElementsByTagName("button")[0];
-  const input = japaneseInput.getElementsByTagName("input")[0];
-  const dataSources = document.getElementsByClassName("data-sources")[0];
+  
 
   let identifier: string | null = null;
 
-  button.addEventListener("click", async function () {
+  let lastPosition : number | undefined;
+  async function send() {
+    if(textArea.value.length === 0) {
+      return;
+    }
+    if(lastPosition === textArea.selectionStart) {
+      return;
+    } else {
+      lastPosition = textArea.selectionStart;
+    }
+
     if (identifier !== null) {
       await api.deleteText({ identifier: identifier });
     }
@@ -34,7 +42,12 @@ window.addEventListener('load', async () => {
     });
     identifier = resultPost.identifier;
 
-    await dataSourceGridLookup(dataSources, dataSourceLookup, identifier, parseInt(input.value, 10));
-  });
-});
+    const dataSources = document.querySelector(".tabcontrol-tabcontent-selected .data-sources");
+    if(dataSources) {
+      await dataSourceGridLookup(dataSources, dataSourceLookup, identifier, lastPosition);
+    }
+  }
 
+  textArea.addEventListener("click", send);
+  textArea.addEventListener("focus", send);
+});
