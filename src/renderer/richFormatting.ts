@@ -23,6 +23,34 @@ export function generateHtmlFromRichFormatting(rawInputDocument : string) {
         for(const span of el.children) {
           if(span.tagName == "span") {
             const spanElement = document.createElement("span");
+            const fontSize = span.getAttribute("fontSize");
+            switch(fontSize) {
+              case "ExtraSmall":
+                spanElement.classList.add("textelement-extrasmall")
+                break;
+              case "Small":
+                spanElement.classList.add("textelement-small")
+                break;
+              case "Medium":
+                spanElement.classList.add("textelement-medium")
+                break;
+              case "Normal":
+                spanElement.classList.add("textelement-normal")
+                break;
+              case "Large":
+                spanElement.classList.add("textelement-large")
+                break;
+              case "ExtraLarge":
+                spanElement.classList.add("textelement-extralarge")
+                break;
+              case "Humonguous":
+                spanElement.classList.add("textelement-humonguous")
+                break;
+            }
+            const emphasis = span.getAttribute("emphasis");
+            if(emphasis === "true") {
+              spanElement.classList.add("textelement-emphasis");
+            }
             const text = span.textContent;
             if(text) {
               spanElement.innerText = text;

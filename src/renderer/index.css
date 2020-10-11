@@ -199,3 +199,35 @@ input.radicals-searchbox {
     height: 100%;
     overflow: auto;
 }
+.textelement-extrasmall
+{
+	font-size: xx-small;
+}
+.textelement-small
+{
+	font-size: x-small;
+}
+.textelement-medium
+{
+	font-size: small;
+}
+.textelement-normal
+{
+	font-size: medium;
+}
+.textelement-large
+{
+	font-size: large;
+}
+.textelement-extralarge
+{
+	font-size: larger;
+}
+.textelement-humonguous
+{
+	font-size: xx-large;
+}
+.textelement-emphasis
+{
+	font-weight: bold;
+}
