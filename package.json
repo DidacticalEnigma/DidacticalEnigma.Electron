@@ -12,7 +12,7 @@
     "@azure/ms-rest-js": "^1.8.15",
     "@types/lodash": "^4.14.161",
     "electron": "^8.5.2",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "split.js": "^1.6.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.1"
